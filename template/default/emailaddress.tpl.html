@@ -1,0 +1,14 @@
+
+    <form action="./" method="POST" class="t12l_get_email_button" style="margin-top:40px;">
+        <input type="submit" name="getemail" value="{$txt_get_temporary_email}" />{if $allow_set_email_address == 'Y'} ({$txt_random_email_address}){/if}
+    </form>
+    
+    {if $allow_set_email_address == 'Y'}
+    <div style="margin-left:100px;padding:20px;">{$txt_or}</div>
+    
+    <form {$setemailform.attributes} class="t12l_set_email_button">  
+      {if $setemailform.setemailaddressintern.error} <span class="t12l_error_message">{$setemailform.setemailaddressintern.error}</span> <br />{/if}
+      {$setemailform.setemail.html}  {$setemailform.setemailaddress.html}  @ {$email_address_host_name}
+    </form>
+    {/if}   
+

@@ -1,0 +1,1 @@
+ALTER TABLE `{prefix}mail` ADD `mail_character_set` VARCHAR( 20 ) NULL AFTER `mail_body` ;

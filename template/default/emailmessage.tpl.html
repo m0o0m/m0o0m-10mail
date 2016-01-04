@@ -1,0 +1,30 @@
+
+
+<table class="t12l_mail_details">
+<tr>
+  <td>{$txt_mail_from}</td>
+  <td>{$frontend_from}</td>
+</tr>
+
+<tr>
+  <td>{$txt_date}</td>
+  <td>{$frontend_date}, {$frontend_time}</td>
+</tr>
+
+<tr>
+  <td>{$txt_mail_subject}</td>
+  <td>{$frontend_subject}</td>
+</tr>
+
+<tr>
+  <td>{if $allow_delete_email == 'Y'}<a href="{$script_url}?m={$mail_id}&amp;d=d" onclick="return t12l_delete_mail('{$script_url}?m={$mail_id}&amp;d=d&amp;c=y');">{$txt_delete}</a>{/if}</td>
+  <td class="t12l_mail_details_text">{$frontend_text}</td>
+</tr>
+
+</table>
+
+<p>
+  <a href="./?m={$mail_id}&amp;d=r" class="button">{$txt_reply}</a>
+  {if $allow_delete_email == 'Y'}<a href="{$script_url}?m={$mail_id}&amp;d=d" onclick="return t12l_delete_mail('{$script_url}?m={$mail_id}&amp;d=d&amp;c=y');" class="button" style="margin-left:100px;">{$txt_delete}</a>{/if}
+  <a href="#" onclick="t12l_close_email_message();return false;" class="button" style="margin-left:100px;">{$txt_close}</a>
+</p>

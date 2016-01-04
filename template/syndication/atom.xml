@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title type="html">{$website_utf8_title}</title>
+  <subtitle type="html">{$website_utf8_description}</subtitle> 
+  <link href="{$complete_script_url}"/>
+  <link href="{$self_script_url}" rel="self" title="{$website_utf8_title}" type="application/atom+xml" /> 
+  <id>{$complete_script_url}</id> 
+  <updated>{$updated_atom}</updated> 
+  <generator uri="http://www.gentlesource.com/" version="{$version}">{$software} {$version} - http://www.gentlesource.com/</generator>
+  
+  {foreach from=$mail_list item=item}
+  <entry>
+    <title type="html">{$item.utf8_title}</title>
+    <link href="{$item.frontend_url}"/>
+    <id>{$item.frontend_url}</id>
+    <summary type="html">{$item.utf8_excerpt} [...]</summary>
+    <updated>{$item.last_modified_atom}</updated> 
+    <author>
+      <name>{$website_utf8_title}</name>
+    </author> 
+  </entry>
+  {/foreach}
+</feed>

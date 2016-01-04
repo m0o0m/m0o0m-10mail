@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="{$website_title}" 
+				directory_title="{$website_title}"
+				description="{$website_description}"
+				author="GentleSource"
+				author_email="{$administrator_email}"
+				title_url="{$complete_script_url}"
+				height="400"
+				/>
+  <Content type="url" href="{$complete_script_url}?t=gadget" /> 
+</Module> 

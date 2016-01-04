@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!doctype html public "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{$txt_content_direction}">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset={$txt_charset}" />
+    <title>{$website_title}</title>
+    <meta name="description" content="{$website_meta_description}" />
+    {if $activate_syndication == 'Y' and $address_email != ''} <link rel="alternate" type="application/rss+xml" title="{$website_title} {$txt_feed_rss}" href="{$script_url}?d=feed&amp;f=rss2&amp;a={$address_email}" />
+    <link rel="alternate" type="application/x.atom+xml"  title="{$website_title} {$txt_feed_atom}" href="{$script_url}?d=feed&amp;f=atom&amp;a={$address_email}" />{/if} 
+        
+    <style type="text/css">
+    <!--
+        @import url("{$script_url}template/default/style.css");
+    -->
+    </style>
+        
+    <script type="text/javascript">
+        <!--
+    
+            var t12l_sure_delete_mail = '{$txt_sure_delete_mail}';
+            
+            
+    {literal}
+        
+        function t12l_delete_mail(url) {
+            var answer = confirm(t12l_sure_delete_mail)
+            if (answer){
+                window.location = url;
+                return false;
+            }
+            return answer;
+        }        
+     
+    {/literal}   
+    
+    {if $show_address == true 
+        and $automatic_email_check == 'Y'
+        and $show_mail_details != true}
+    
+    {literal}
+        function t12l_interval() {
+            interval = setInterval("t12l_check_email()", 60000);
+        }
+        function t12l_check_email() {
+            {/literal}HTML_AJAX.replace('email_message_list','{$script_url}index.php?d=xhr&f=refresh');{literal}
+        }
+        
+        window.onload=t12l_interval;
+    {/literal} 
+    {/if}
+    
+    
+            
+    {literal}
+        
+        function t12l_display_email_message(m) {
+            document.body.class = 't12l_transparent';
+            document.getElementById('t12l_email_message').style.display = 'block';
+            {/literal}HTML_AJAX.replace('t12l_email_message_content','{$script_url}index.php?d=xhr&f=message&m=' + m);{literal}
+        }        
+        
+        function t12l_close_email_message() {
+            document.getElementById('t12l_email_message').style.display = 'none';
+            document.getElementById('t12l_email_message_content').innerHTML = '';
+        }        
+     
+    {/literal} 
+    
+       
+        //-->
+    </script>
+    
+    <script type="text/javascript" src="{$script_url}index.php?d=xhr&amp;client=all"></script>
+
+    
+    
+  </head>
+  <body>
+  <div id="t12l_body">
+  <div id="t12l_bodycontent">              
+    {call_module trigger="module_call_auctionads"}
+  
+  <!-- Language selection (link list or dropdown menu) -->
+  {include file='default/language.tpl.html'}
+
+  <h1>{$website_name}</h1>
+  <h2>{$website_description}</h2>
+    
+
+    {foreach from=$system_messages item=item}
+    <div class="t12l_system">
+      <div class="t12l_index">{$item.title}</div>
+      <div class="t12l_code"><br />{$item.message}</div>
+    </div>
+    {/foreach}
+
+    {foreach from=$error_messages item=item}
+    <div class="t12l_system">
+      <div class="t12l_index">{$item.title}</div>
+      <div class="t12l_code"><br />{$item.message}</div>
+    </div>
+    {/foreach}
+    
+    {call_module trigger="frontend_page_header"}
+  
+  
+    {if $shut_down != 'Y'}
+        {include file=$detail_template}
+    {else}
+        {if $display_shut_down_message == 'Y'}
+            <div style="font-weight:bold;">{$txt_website_down_maintenance}</div>
+        {/if}
+    {/if}    
+    
+    
+    
+    
+    
+    {call_module trigger="frontend_page_footer"}
+
+    
+    {foreach from=$debug_messages item=item}
+    <div class="t12l_system">
+      <div class="t12l_index">{$item.title}</div>
+      <div class="t12l_code"><br />{$item.message}</div>
+    </div>
+    {/foreach}
+    
+    
+  </div>
+  </div>
+  </body>  
+</html>

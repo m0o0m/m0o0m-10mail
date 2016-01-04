@@ -1,0 +1,248 @@
+<div class="t12l_error_message">
+    {foreach from=$message item=item}
+        <div class="t12l_error_message_item">{$item}</div>
+    {/foreach}
+</div>
+{if $delete_mail_dialogue == true}
+<div class="t12l_delete_dialogue">
+  <a href="{$script_url}{$yes_delete_query}">{$txt_yes_delete}</a>
+  <a href="{$script_url}{$no_keep_query}">{$txt_no_keep_it}</a>
+</div>
+{/if}
+
+<div id="temporary_address">
+
+{if $show_address == true}
+
+    <p>
+      <form name="mailform" style="display:inline;">
+      {$txt_current_address}
+      <input type="text" name="mail" value="{$address_email}" {literal}onfocus="if (typeof(document.layers) == 'undefined' || typeof(textarea_selected) == 'undefined') {textarea_selected = 1; document.mailform.elements['mail'].select();}"{/literal} class="t12l_address_input" tabindex="1" />
+      {if $activate_syndication == 'Y'}<a href="./?d=feed&amp;a={$address_email}"><img src="./template/default/image/feed_icon.png" width="24" height="24" border="0" alt="" title="" style="vertical-align:middle;margin-left:15px;"></a>{/if}
+      </form>
+    </p>
+
+{else}
+
+
+    <form action="./" method="POST" class="t12l_get_email_button" style="margin-top:40px;">
+        <input type="submit" name="getemail" value="{$txt_get_temporary_email}" />{if $allow_set_email_address == 'Y'} ({$txt_random_email_address}){/if}
+    </form>
+    
+    {if $allow_set_email_address == 'Y'}
+    <div style="margin-left:100px;padding:20px;">{$txt_or}</div>
+    
+    <form {$setemailform.attributes} class="t12l_set_email_button">  
+      {if $setemailform.setemailaddressintern.error} <span class="t12l_error_message">{$setemailform.setemailaddressintern.error}</span> <br />{/if}
+      {$setemailform.setemail.html}  {$setemailform.setemailaddress.html}  @ {$email_address_host_name}
+    </form>
+    {/if}   
+
+{/if} 
+
+</div>
+
+{if $show_address == true and $show_mail_details != true}
+<div id="email_message_list">
+{if $show_mail_list == true}
+
+<h2>{$txt_you_have_got_mail}</h2>
+
+<table class="t12l_mail_list">
+{foreach from=$mail_list item=item}
+<tr>
+  <td rowspan="3"><a href="?m={$item.mail_id}" onclick="t12l_display_email_message('{$item.mail_id}');return false;">{$txt_show}</a>{if $allow_delete_email == 'Y'}<br /><br /><a href="?m={$item.mail_id}&amp;d=d" onclick="return t12l_delete_mail('{$script_url}?m={$item.mail_id}&amp;d=d&amp;c=y');">{$txt_delete}</a>{/if}</td>
+  <td>{$txt_mail_from}</th>
+  <td>{$item.frontend_from}</td>
+</tr>
+<tr>
+  <td>{$txt_mail_subject}</th>
+  <td>{$item.frontend_subject}</td>
+</tr>
+<tr>
+  <td>{$txt_mail_excerpt}</td>
+  <td>{$item.frontend_text}</td>
+</tr>
+<tr>
+  <td colspan="3">&nbsp;</td>
+</tr>
+{/foreach}
+</table>
+{else} 
+<div class="t12l_error_message">
+  {$txt_no_emails}
+      {if $automatic_email_check == 'Y'}
+      <span style="margin-top:10px;font-size:70%">
+        <script language="JavaScript" type="text/javascript">
+         <!--
+         document.write('({$txt_automatic_check_activated})'); 
+        //-->
+        </script>
+      </span>
+   {/if}
+</div>
+{/if}
+</div>
+{/if}
+
+
+
+{if $show_reply_form == true}
+
+<h2>{$txt_reply}</h2>
+
+<form {$reply.attributes}>
+{$reply.hidden}
+
+
+<table class="t12l_mail_reply">
+<tr>
+  <td class="t12l_mail_reply_field">
+    {if $reply.text.error} <span class="t12l_error_message">{$reply.text.error}</span><br />{/if}
+    {$reply.text.html}
+  </td>
+</tr>
+
+<tr>
+  <td>{call_module trigger="frontend_comment_form"}</td>
+</tr>
+
+<tr>
+  <td>{$reply.save.html}</td>
+</tr>
+
+</table>
+
+</form>
+
+{/if}
+
+
+
+{if $show_mail_details == true}
+
+<p><a href="./" class="button">{$txt_mail_list}</a></p>
+
+
+<table class="t12l_mail_details">
+<tr>
+  <td>{$txt_mail_from}</td>
+  <td>{$frontend_from}</td>
+</tr>
+
+<tr>
+  <td>{$txt_date}</td>
+  <td>{$frontend_date}, {$frontend_time}</td>
+</tr>
+
+<tr>
+  <td>{$txt_mail_subject}</td>
+  <td>{$frontend_subject}</td>
+</tr>
+
+<tr>
+  <td>{if $allow_delete_email == 'Y'}<a href="{$script_url}?m={$mail_id}&amp;d=d" onclick="return t12l_delete_mail('{$script_url}?m={$mail_id}&amp;d=d&amp;c=y');">{$txt_delete}</a>{/if}</td>
+  <td class="t12l_mail_details_text">{$frontend_text}</td>
+</tr>
+
+</table>
+
+{if $show_reply_form != true}
+<p><a href="./?m={$mail_id}&amp;d=r" class="button">{$txt_reply}</a></p>{/if}
+{/if}
+
+
+
+
+{if $show_address == true}
+
+<div class="t12l_reload_button" style="margin:50px 0 80px 240px;">
+    <a href="./" {if $show_mail_details != true} onclick="HTML_AJAX.replace('email_message_list','{$script_url}index.php?d=xhr&amp;f=refresh');return false;" {/if}>{$txt_reload}</a>
+</div>
+
+<p>
+  {$txt_address_expiration_note}: 
+  <span id="timeframe">{$minutes_left} {$txt_minute_abbr}</span>
+</p>
+<form action="./" method="POST" class="t12l_get_email_button">  
+  <input type="submit" name="resettime" value="{$txt_postpone_expiration}" />
+</form>
+
+{if $debug_mode == 'Y'}
+<form action="./" method="POST" class="t12l_get_email_button">  
+  <input type="submit" name="ditchemail" value="{$txt_ditch_email}" />
+</form>
+{/if}
+
+
+
+<script language="JavaScript">
+    <!--
+    var txt_minute = '{$txt_minute_abbr}';
+    var txt_second = '{$txt_second_abbr}';
+    var txt_expired = '{$txt_address_expired}';
+    var milisec = 9;
+    var time_left = {$time_left};
+    var minutes = Math.floor(time_left / 60);
+    
+    seconds = time_left - minutes * 60;
+    
+    {literal}
+    function display()
+    {
+        time_left -= 1;
+        if (seconds <= 0) {
+            seconds = 59;
+            minutes -= 1;
+        } else {
+            seconds -= 1;
+        }
+        if (time_left <= 0) {
+            seconds = 0;
+        }
+        
+        if (minutes <= 0) {
+            minutes = 0;
+        }
+    
+        if (time_left > 0) {
+            document.getElementById('timeframe').innerHTML = minutes + ' ' + txt_minute + ' ' + seconds + ' ' + txt_second;
+        } else {
+            document.getElementById('timeframe').innerHTML = txt_expired;
+        }
+        setTimeout("display()",1000);
+    }
+    display();
+    {/literal}
+    //-->
+</script>
+
+
+{/if}
+
+
+
+
+
+{if $show_mail_details != true and $show_reply_form != true}
+<p>&nbsp;</p>
+{call_module trigger="frontend_content_footer" data="$page_data"}
+<p>&nbsp;</p>
+
+
+
+{/if}
+
+
+    <div id="t12l_footer">
+        {if $created_addresses > 0}
+            {$txt_created_addresses}: {$created_addresses} &middot;
+            {$txt_received_emails}: {$received_emails} &middot;
+            {$txt_valid_emails}: {$valid_emails} &middot;
+            {$txt_expired_emails}: {$expired_emails} &middot;
+            {$txt_sent_emails}: {$sent_emails}
+        {/if}
+    </div>
+
+<img id="HTML_AJAX_LOADING" class="t12l_loading" src="{$script_url}template/default/image/throbber.gif" title="" alt="" />
+<div id="t12l_email_message"><div style="text-align:right;"><a href="#" onclick="t12l_close_email_message();return false;">x</a></div><div id="t12l_email_message_content"></div></div>

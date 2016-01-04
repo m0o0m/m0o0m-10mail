@@ -1,0 +1,6 @@
+
+Documentation and installation instructions can be found in the directory 'docu'.
+
+
+Dokumentation und Installationsanweisungen finden Sie im Verzeichnis 'docu'.
+

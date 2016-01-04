@@ -1,0 +1,29 @@
+    <div class="t12l_login_background">
+    <form {$form.attributes}>
+    {$form.hidden}
+    <table class="t12l_login">
+      <tr>
+        <td colspan="2" style="padding-bottom:15px;">
+          {$txt_reset_login_text}                  
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="t12l_error_message">
+          {foreach from=$message item=item}
+            <div class="t12l_error_message_item">{$item}</div>
+          {/foreach}              
+        </td>
+      </tr>
+      {if $show_form}
+      <tr>
+        <td>{$form.login_name.label}</td>
+        <td>{$form.login_name.html} {if $form.login_name.error} <span class="t12l_error_message">{$form.login_name.error}</span> {/if}</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>{$form.send.html}</td>
+      </tr>
+      {/if}
+    </table>      
+    </form>
+    </div>

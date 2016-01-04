@@ -1,0 +1,34 @@
+    <div class="t12l_login_background">
+    <div  class="t12l_login">
+    <img src="../template/admin/image/icon/login.png" width="64" height="64" style="float:right;margin-right:20px;" />
+    <form {$form.attributes}>
+    <table>
+      <tr>
+        <td colspan="2" class="t12l_error_message">
+          {foreach from=$message item=item}
+            <div class="t12l_error_message_item">{$item}</div>
+          {/foreach}              
+        </td>
+      </tr>
+      <tr>
+        <td>{$form.login_name.label}</td>
+        <td>
+            {if $form.login_name.error} <span class="t12l_error_message">{$form.login_name.error}</span> <br />{/if}
+            {$form.login_name.html} 
+        </td>
+      </tr>
+      <tr>
+        <td>{$form.password.label}</td>
+        <td>
+            {if $form.password.error} <span class="t12l_error_message">{$form.password.error}</span> <br />{/if}
+            {$form.password.html}
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>{$form.login.html} (<a href="./?d=r">{$txt_forget_password}</a>)</td>
+      </tr>
+    </table>      
+    </form>
+    </div>
+    </div>

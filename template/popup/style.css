@@ -1,0 +1,51 @@
+#t12l_body {
+    font-family:Verdana, sans-serif;
+    font-size:90%;
+	margin:10px auto;
+	width:100%;
+	line-height:140%;
+	max-width:100%;
+    text-align:left;
+}
+
+#t12l_body a:link,
+#t12l_body a:visited,
+#t12l_body a:active {
+	text-decoration:none;
+	color:#74A0FF;
+}
+
+
+#t12l_body a:hover {
+	color:#74A0FF;
+}
+
+#poweredby {
+	margin-top:50px;
+	text-align:center;
+}
+
+.t12l_system {
+    padding:10px;
+    width:800px;
+    margin-bottom:10px;
+    border:1px solid #FF0000;
+    background-color:#FFF8F8;
+}
+
+.t12l_debug {
+    padding:10px;
+    margin-bottom:10px;
+    border:1px solid #0070C0;
+    background-color:#ECF0FF;
+}
+
+
+
+.t12l_error_message {
+	color:#FF5F00;
+}
+
+.t12l_error_message_item {
+	padding-bottom:10px;
+}

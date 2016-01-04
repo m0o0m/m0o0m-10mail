@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title type="html">{$website_utf8_title}</title>
+    <link>{$complete_script_url}</link>
+    <description type="html">{$website_utf8_description}</description>
+    {foreach from=$mail_list item=item}
+    <item>
+       <title type="html">{$item.utf8_title}</title>
+       <link>{$item.frontend_url}</link>
+       <description type="html">{$item.utf8_excerpt} [...]</description>
+    </item>
+    {/foreach}
+  </channel>
+</rss>

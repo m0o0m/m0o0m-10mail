@@ -1,0 +1,214 @@
+    <img src="../template/admin/image/icon/configuration_large.png" width="32" height="32" align="left" style="margin-right:20px;" />
+    <h3>{$txt_settings}</h3>
+    
+    
+    
+    
+    <form {$form.attributes}>
+    {$form.hidden}
+    
+
+    <div class="t12l_setting_form">
+      
+      
+        <div class="t12l_error_message">
+          {foreach from=$message item=item}
+            <div class="t12l_error_message_item">{$item}</div>
+          {/foreach}              
+        </div>
+        
+
+          
+          <!-- Tabs -->
+          <div class="tabber" style="margin-top:50px;margin-bottom:15px;">
+          
+          <!-- General Settings -->
+          <div class="tabbertab {$tabber_generalsettings_default}">
+            <h2>{$txt_general_settings}</h2>  
+                <table class="t12l_setting">
+                  
+                  <!--          
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.website_name.label}</td>
+                    <td>{$form.website_name.html}</td>
+                  </tr>
+                            
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.website_description.label}</td>
+                    <td>{$form.website_description.html}</td>
+                  </tr>
+                  -->
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.default_language.label}</td>
+                    <td>{$form.default_language.html}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.frontend_language.label}</td>
+                    <td>{$form.frontend_language.html}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.display_language_selection.label}</td>
+                    <td>{$form.display_language_selection.html}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.use_utf8.label}</td>
+                    <td>{$form.use_utf8.html}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.shut_down.label}</td>
+                    <td>{$form.shut_down.html}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.display_shut_down_message.label}</td>
+                    <td>{$form.display_shut_down_message.html}</td>
+                  </tr>
+                  
+                  <!--
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.shut_down_message.label}</td>
+                    <td>{$form.shut_down_message.html}</td>
+                  </tr>
+                  -->
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.debug_mode.label}</td>
+                    <td>
+                      {$txt_debug_mode_note}<br /><br />
+                      {$form.debug_mode.html}
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.script_url.label}</td>
+                    <td>{$form.script_url.html}</td>
+                  </tr>
+                                                                        
+                  <tr>
+                    <td class="t12l_setting_form_label"></td>
+                    <td>{$form.save_tab_general.html}</td>
+                  </tr>
+                  
+                </table>          
+          </div>
+          
+          <!-- Mail Settings -->
+          <div class="tabbertab {$tabber_mailsettings_default}" style="min-height:90px;">
+            <h2>{$txt_mail_settings}</h2>  
+                <table class="t12l_setting">
+                                    
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.lifetime.label}</td>
+                    <td>
+                        {if $form.lifetime.error} <span class="t12l_error_message">{$form.lifetime.error}</span> <br />{/if}
+                        
+                        {$form.lifetime.html} 
+                        {$form.lifetime_unit.html}
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.allow_set_email_address.label}</td>
+                    <td>{$form.allow_set_email_address.html}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.activate_syndication.label}</td>
+                    <td>{$form.activate_syndication.html}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.email_address_host_name.label}</td>
+                    <td>{$form.email_address_host_name.html}</td>
+                  </tr>
+                            
+                  {if $demo_mode != true}
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.mailbox_hostname.label}</td>
+                    <td>{$form.mailbox_hostname.html}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.mailbox_username.label}</td>
+                    <td>{$form.mailbox_username.html}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.mailbox_password.label}</td>
+                    <td>{$form.mailbox_password.html}</td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.mailbox_connect_ssl.label}</td>
+                    <td>
+                      {$txt_mailbox_connect_ssl_note}<br /><br />
+                      {$form.mailbox_connect_ssl.html}
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.non_validate_command.label}</td>
+                    <td>
+                      {$txt_certificate_validation_note}<br /><br />
+                      {$form.non_validate_command.html}
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$txt_mail_account_test}</td>
+                    <td>
+                      {$txt_mail_account_test_note}<br /><br />
+                      <a href="./mailaccounttest.php" target="mailaccounttest" onclick="window.open('','mailaccounttest','toolbar=0,location=0,directories=0,status=yes,menubar=0,scrollbars=yes,resizable=yes,width=500,height=350,titlebar=yes')">{$txt_mail_account_test_start}</a>
+                    </td>
+                  </tr>
+                  {/if}
+                  
+                  <tr>
+                    <td class="t12l_setting_form_label">{$form.download_mail_process_key.label}</td>
+                    <td>{$form.download_mail_process_key.html}</td>
+                  </tr>
+                                                      
+                  <tr>
+                    <td class="t12l_setting_form_label"></td>
+                    <td>{$form.save_tab_mail.html}</td>
+                  </tr>
+                  
+                </table>          
+          </div>
+          
+          </div>
+          <!-- /Tabs -->
+        
+    </div>
+        
+    
+    
+    <fieldset class="t12l_setting_form">
+      <legend>{$txt_miscellaneous}</legend>
+        <table class="t12l_setting">
+                 
+          <tr>
+            <td>{$txt_script_url_note}</td>
+          </tr> 
+                  
+          <tr>
+            <td>{$complete_script_url}</td>
+          </tr>
+                 
+          <tr>
+            <td>{$txt_mail_download_url_note}</td>
+          </tr> 
+                  
+          <tr>
+            <td>{$mail_download_url}</td>
+          </tr>
+            
+        </table>
+    </fieldset>
+    
+    </form>

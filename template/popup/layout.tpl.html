@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!doctype html public "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{$txt_content_direction}">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset={$txt_charset}" />
+    <title>{$software} {$txt_admin_area}</title>
+    
+    {literal} 
+    
+    <style type="text/css">
+    <!--
+        @import url("../template/default/style.css");
+        @import url("../template/popup/style.css");
+    -->
+    </style>    
+    <script type="text/javascript">
+    <!--
+      function display(blockid) {
+          if (document.getElementById(blockid).style.display==''){
+              document.getElementById(blockid).style.display='none';
+          } else {
+              document.getElementById(blockid).style.display='';
+          }
+      }     
+    //-->
+    </script>
+    
+    {/literal}
+    
+    {call_module trigger="backend_source_head"}
+    
+  </head>
+  <body>    
+  <div id="t12l_body">
+  <div class="t12l_content_background">
+  <div class="t12l_content">
+  
+  
+  
+    {foreach from=$system_messages item=item}
+    <div class="t12l_system">
+      <div class="t12l_index">{$item.title}</div>
+      <div class="t12l_code"><br />{$item.message}</div>
+    </div>
+    {/foreach}
+
+    {foreach from=$error_messages item=item}
+    <div class="t12l_system">
+      <div class="t12l_index">{$item.title}</div>
+      <div class="t12l_code"><br />{$item.message}</div>
+    </div>
+    {/foreach}
+  
+    
+    
+    <div class="t12l_content_detail">
+    {include file=$detail_template}
+    </div>
+    
+  
+  
+    
+    {foreach from=$debug_messages item=item}
+    <div class="t12l_system">
+      <div class="t12l_index">{$item.title}</div>
+      <div class="t12l_code"><br />{$item.message}</div>
+    </div>
+    {/foreach}
+  
+    
+  </div>
+  </div>
+  </div>
+  </body>  
+</html>

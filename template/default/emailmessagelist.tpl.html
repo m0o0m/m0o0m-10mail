@@ -1,0 +1,43 @@
+{if $show_mail_list == true}
+
+<h2>{$txt_you_have_got_mail}</h2>
+
+<table class="t12l_mail_list">
+{foreach from=$mail_list item=item}
+<tr>
+  <td rowspan="3"><a href="?m={$item.mail_id}" onclick="t12l_display_email_message('{$item.mail_id}');return false;">{$txt_show}</a>{if $allow_delete_email == 'Y'}<br /><br /><a href="?m={$item.mail_id}&amp;d=d" onclick="return t12l_delete_mail('{$script_url}?m={$item.mail_id}&amp;d=d&amp;c=y');">{$txt_delete}</a>{/if}</td>
+  <td>{$txt_mail_from}</th>
+  <td>{$item.frontend_from}</td>
+</tr>
+<tr>
+  <td>{$txt_mail_subject}</th>
+  <td>{$item.frontend_subject}</td>
+</tr>
+<tr>
+  <td>{$txt_mail_excerpt}</td>
+  <td>{$item.frontend_text}</td>
+</tr>
+<tr>
+  <td colspan="3">&nbsp;</td>
+</tr>
+{/foreach}
+</table>
+
+
+<script language="JavaScript">
+    <!--
+    document.title = '{$txt_new_email_message}';
+    //-->
+</script>
+
+
+{else} 
+<div class="t12l_error_message">
+  {$txt_no_emails}
+      {if $automatic_email_check == 'Y'}
+      <span style="margin-top:10px;font-size:70%">
+        ({$txt_automatic_check_activated})
+      </span>
+   {/if}
+</div>
+{/if}
